@@ -7,7 +7,7 @@ const signIn = () => {
     <View>
       <Text>signIn</Text>
 
-      <Link href="/sign-up">
+      <Link href="/(tabs)">
         <Text className="text-2xl font-bold text-success">
           Create a new account
         </Text>
