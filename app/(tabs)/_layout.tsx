@@ -1,43 +1,38 @@
+import { tabs } from "@/constants/data";
 import { Tabs } from "expo-router";
 import React from "react";
+import { Image } from "react-native";
 
 const TabLayout = () => {
+  const TabIcon = ({ focused, icon }: TabIconProps) => (
+    <Image
+      source={icon}
+      style={{
+        width: 24,
+        height: 24,
+        tintColor: focused ? "#000" : "#888",
+      }}
+    />
+  );
+
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-        }}
-      />
-      <Tabs.Screen
-        name="insights"
-        options={{
-          title: "Insights",
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: "Settings",
-        }}
-      />
-      <Tabs.Screen
-        name="subscriptions"
-        options={{
-          title: "Subscriptions",
-        }}
-      />
-      <Tabs.Screen
-        name="subscriptions/[id]"
-        options={{
-          href: null,
-        }}
-      />
+      {tabs.map((tab) => (
+        <Tabs.Screen
+          key={tab.name}
+          name={tab.name}
+          options={{
+            title: tab.title,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon focused={focused} icon={tab.icon} />
+            ),
+          }}
+        />
+      ))}
     </Tabs>
   );
 };
